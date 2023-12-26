@@ -7,7 +7,7 @@ public class Philosopher extends Thread {
 
     public Philosopher(String name, DinnerTable dinnerTable) {
         this.name = name;
-        this.counter = 0;
+        counter++;
         this.dinnerTable = dinnerTable;
     }
 
@@ -31,7 +31,9 @@ public class Philosopher extends Thread {
         sleep(500);
         System.out.println(name + " отобедал");
         dinnerTable.setFork(true);
+        sleep(100);
     }
+
 
     public void reflect() throws InterruptedException{
         System.out.println(name + " размышляет");

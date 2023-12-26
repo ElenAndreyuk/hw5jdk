@@ -1,7 +1,23 @@
 package ru.gb;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.IntStream;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
-    }
-}
+                AtomicInteger atomicInteger = new AtomicInteger(0);
+                ExecutorService executor = Executors.newFixedThreadPool(2);
+
+                IntStream.range(0,1000).forEach(i ->{
+                    Runnable task = ()->
+                            atomicInteger.updateAndGet(n-> n+2);
+                    executor.submit(task);
+                });
+                executor.shutdown();
+                System.out.println(atomicInteger.get());
+            }
+
+        }
+

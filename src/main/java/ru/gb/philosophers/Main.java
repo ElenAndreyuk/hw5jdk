@@ -11,4 +11,5 @@ public class Main {
         DinnerTable dinnerTable = new DinnerTable();
         dinnerTable.start();
     }
+
 }
